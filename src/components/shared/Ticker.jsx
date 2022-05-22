@@ -2,7 +2,7 @@ import { useState } from 'react';
 import CountUp from 'react-countup';
 import { Waypoint } from 'react-waypoint';
 
-export const Ticker = ({ end, suffix, decimal }) => {
+export const Ticker = ({ end, suffix, decimals }) => {
   const [viewPortEntered, setViewPortEntered] = useState(false);
 
   const onVWEnter = () => {
@@ -11,9 +11,9 @@ export const Ticker = ({ end, suffix, decimal }) => {
 
   return (
     <Waypoint onEnter={onVWEnter}>
-      {viewPortEntered && (
-        <CountUp end={end} suffix={suffix} decimals={decimal} duration={3}></CountUp>
-      )}
+      {viewPortEntered ? (
+        <CountUp end={end} suffix={suffix} start={0} decimals={decimals} duration={3} />
+      ) : null}
     </Waypoint>
   );
 };
