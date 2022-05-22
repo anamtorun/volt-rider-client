@@ -47,10 +47,10 @@ export const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <Link to="/" className="btn glass normal-case text-gray-600 mr-3 hidden lg:flex px-4">
+        <Link to="/login" className="btn glass normal-case text-gray-600 mr-3 hidden lg:flex px-4">
           Log in
         </Link>
-        <Link to="/" className="btn btn-secondary normal-case px-4">
+        <Link to="/sign-up" className="btn btn-secondary normal-case px-4">
           Sign up
         </Link>
       </div>

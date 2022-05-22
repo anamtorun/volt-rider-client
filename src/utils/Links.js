@@ -1,7 +1,8 @@
 const links = [
   { name: 'Home', path: '/' },
   { name: 'About', path: '/about' },
-  { name: 'services', path: '/services' },
+  { name: 'Services', path: '/services' },
+  { name: 'Hit us up', path: '/contact-us' },
   { name: 'Blogs', path: '/blogs' },
 ];
 

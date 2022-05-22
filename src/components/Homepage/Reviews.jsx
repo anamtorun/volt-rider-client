@@ -8,9 +8,9 @@ import 'swiper/css/pagination';
 export const Reviews = () => {
   return (
     <section className="py-16">
-      <section className="bg-slate-50 rounded relative">
-        <section className="max-w-screen-2xl mx-auto relative">
-          <div className="px-4 py-16 mx-auto sm:px-6 lg:px-0 lg:mr-0 sm:py-24 max-w-[1380px]">
+      <section className="bg-slate-50 rounded">
+        <section className="max-w-screen-2xl mx-auto relative lg:px-20 xl:px-0">
+          <div className="px-4 py-16 mx-auto sm:px-6 lg:px-0 lg:mr-0 sm:py-24 max-w-[1400px]">
             <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-x-16 gap-y-8 lg:items-center">
               <div className="max-w-xl text-center sm:text-left">
                 <h2 className="text-neutral text-3xl font-bold tracking-tight sm:text-4xl">
@@ -368,7 +368,7 @@ export const Reviews = () => {
               </i>
             </button>
           </div>
-          <div className="hidden lg:block absolute lg:bottom-4 right-0">
+          <div className="hidden lg:block absolute lg:bottom-4 right-0 lg:px-20 xl:px-0">
             <button className="btn btn-outline btn-secondary px-5 capitalize tracking-wider">
               Read More
               <i>
