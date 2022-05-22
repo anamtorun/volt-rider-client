@@ -3,7 +3,7 @@ import links from '../../utils/Links';
 
 export const Navbar = () => {
   return (
-    <div className="max-w-screen-2xl mx-auto navbar bg-base-100">
+    <nav className="max-w-screen-2xl mx-auto navbar bg-base-100">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex="0" className="btn btn-ghost lg:hidden">
@@ -54,6 +54,6 @@ export const Navbar = () => {
           Sign up
         </Link>
       </div>
-    </div>
+    </nav>
   );
 };
