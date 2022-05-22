@@ -1,9 +1,10 @@
-import { Banner } from '../components';
+import { Banner, Tools } from '../components';
 
 export const Home = () => {
   return (
     <>
       <Banner />
+      <Tools />
     </>
   );
 };
