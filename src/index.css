@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.swiper-container {
+  overflow: hidden;
+}
+.swiper-pagination-bullet-active {
+  background-color: #f000b8 !important;
+}

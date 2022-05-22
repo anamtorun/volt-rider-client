@@ -1,7 +1,3 @@
-// import { MdOutlineReviews } from 'react-icons/md';
-// import { VscTools, VscHeart } from 'react-icons/vsc';
-// import { BsLightningCharge } from 'react-icons/bs';
-// import { Ticker } from '../shared/Ticker';
 import { ImRocket } from 'react-icons/im';
 import { stats } from '../../utils/stats';
 import { Stat } from '../shared/Stat';
