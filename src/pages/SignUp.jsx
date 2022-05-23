@@ -1,7 +1,7 @@
 import { SocialLogin, Divider } from '../components';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import schema from '../validation/signUpSchema';
+import signUpSchema from '../validation/signUpSchema';
 
 export const SignUp = () => {
   const {
@@ -9,7 +9,7 @@ export const SignUp = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(signUpSchema),
   });
   const onSubmit = (data) => console.log(data);
 
