@@ -2,9 +2,15 @@ import { Link } from 'react-router-dom';
 import { Divider, SocialLogin } from '../components';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
+import { useState } from 'react';
 import loginSchema from '../validation/loginSchema';
 
+const classes = 'text-base absolute top-1/2 right-5 -translate-y-1/2 cursor-pointer';
+
 export const Login = () => {
+  const [showPassword, setShowPassword] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -56,13 +62,24 @@ export const Login = () => {
               </Link>
             </div>
 
-            <input
-              type="password"
-              placeholder="Password"
-              id="loggingPassword"
-              className="input input-bordered w-full"
-              {...register('password')}
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                placeholder="Password"
+                id="loggingPassword"
+                className="input input-bordered w-full"
+                {...register('password')}
+              />
+
+              {!showPassword ? (
+                <AiOutlineEye className={classes} onClick={() => setShowPassword(!showPassword)} />
+              ) : (
+                <AiOutlineEyeInvisible
+                  className={classes}
+                  onClick={() => setShowPassword(!showPassword)}
+                />
+              )}
+            </div>
           </div>
           <p className="text-sm text-error mt-1">{errors.password?.message}</p>
 

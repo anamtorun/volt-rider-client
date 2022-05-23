@@ -1,9 +1,16 @@
 import { SocialLogin, Divider } from '../components';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useState } from 'react';
+import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import signUpSchema from '../validation/signUpSchema';
 
+const classes = 'text-base absolute top-1/2 right-5 -translate-y-1/2 cursor-pointer';
+
 export const SignUp = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -22,6 +29,7 @@ export const SignUp = () => {
         <Divider text="or sign up with email" />
 
         <form onSubmit={handleSubmit(onSubmit)}>
+          {/* Name */}
           <div className="mt-4">
             <label
               className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
@@ -38,7 +46,7 @@ export const SignUp = () => {
             />
           </div>
           <p className="text-sm text-error mt-1">{errors.name?.message}</p>
-
+          {/* Email */}
           <div className="mt-4">
             <label
               className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
@@ -56,6 +64,7 @@ export const SignUp = () => {
           </div>
           <p className="text-sm text-error mt-1">{errors.email?.message}</p>
 
+          {/* Password */}
           <div className="mt-4">
             <label
               className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
@@ -64,16 +73,27 @@ export const SignUp = () => {
               Password
             </label>
 
-            <input
-              type="password"
-              placeholder="Password"
-              id="password"
-              className="input input-bordered w-full"
-              {...register('password')}
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                placeholder="Password"
+                id="password"
+                className="input input-bordered w-full"
+                {...register('password')}
+              />
+              {!showPassword ? (
+                <AiOutlineEye className={classes} onClick={() => setShowPassword(!showPassword)} />
+              ) : (
+                <AiOutlineEyeInvisible
+                  className={classes}
+                  onClick={() => setShowPassword(!showPassword)}
+                />
+              )}
+            </div>
           </div>
           <p className="text-sm text-error mt-1">{errors.password?.message}</p>
 
+          {/* Confirm Password */}
           <div className="mt-4">
             <label
               className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
@@ -82,13 +102,27 @@ export const SignUp = () => {
               Confirm Password
             </label>
 
-            <input
-              type="password"
-              placeholder="Confirm Password"
-              id="confirmPassword"
-              className="input input-bordered w-full"
-              {...register('confirmPassword')}
-            />
+            <div className="relative">
+              <input
+                type={showConfirmPassword ? 'text' : 'password'}
+                placeholder="Confirm Password"
+                id="confirmPassword"
+                className="input input-bordered w-full"
+                {...register('confirmPassword')}
+              />
+
+              {!showConfirmPassword ? (
+                <AiOutlineEye
+                  className={classes}
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                />
+              ) : (
+                <AiOutlineEyeInvisible
+                  className={classes}
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                />
+              )}
+            </div>
           </div>
           <p className="text-sm text-error mt-1">{errors.confirmPassword?.message}</p>
 
