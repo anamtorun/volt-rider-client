@@ -1,7 +1,18 @@
-import { Link, NavLink } from 'react-router-dom';
+import { signOut } from 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import auth from '../../config/firebase';
 import links from '../../utils/Links';
 
 export const Navbar = () => {
+  const [user, loading] = useAuthState(auth);
+  const navigate = useNavigate();
+
+  const handleSignOut = async () => {
+    await signOut(auth);
+    navigate('/');
+  };
+
   return (
     <nav className="max-w-screen-2xl mx-auto navbar bg-base-100">
       <div className="navbar-start">
@@ -47,12 +58,28 @@ export const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <Link to="/login" className="btn glass normal-case text-gray-600 mr-3 hidden lg:flex px-4">
-          Log in
-        </Link>
-        <Link to="/sign-up" className="btn btn-secondary normal-case px-4">
-          Sign up
-        </Link>
+        {/* Login button */}
+        {!user && !loading && (
+          <Link
+            to="/login"
+            className="btn glass normal-case text-gray-600 mr-3 hidden lg:flex px-4"
+          >
+            Log in
+          </Link>
+        )}
+
+        {/* Show LOADING or SIGN UP or SIGN OUT button*/}
+        {loading ? (
+          <button className="btn btn-secondary loading px-[1.5rem]"></button>
+        ) : user ? (
+          <button className="btn btn-secondary" onClick={handleSignOut}>
+            Sign out
+          </button>
+        ) : (
+          <Link to="/sign-up" className="btn btn-secondary normal-case px-4">
+            Sign up
+          </Link>
+        )}
       </div>
     </nav>
   );
