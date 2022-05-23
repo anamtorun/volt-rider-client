@@ -1,61 +1,105 @@
-import { Link } from 'react-router-dom';
 import { SocialLogin, Divider } from '../components';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import schema from '../validation/signUpSchema';
 
 export const SignUp = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+  const onSubmit = (data) => console.log(data);
+
   return (
-    <div className="min-h-[90vh] flex justify-center items-center bg-slate-100">
+    <div className="min-h-[90vh] flex justify-center items-center bg-slate-100 p-5">
       <div className="bg-base-100 shadow-xl w-full max-w-lg px-6 py-8 md:px-8 rounded">
-        <p className="text-xl text-center text-gray-600 dark:text-gray-200">Welcome back!</p>
+        <p className="text-xl text-center text-gray-600 dark:text-gray-200">Welcome!</p>
         <SocialLogin />
 
-        <Divider text="or login with email" />
+        <Divider text="or sign up with email" />
 
-        <div className="mt-4">
-          <label
-            className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
-            htmlFor="LoggingEmailAddress"
-          >
-            Email Address
-          </label>
-          <input
-            type="email"
-            placeholder="Email"
-            id="LoggingEmailAddress"
-            className="input input-bordered w-full"
-          />
-        </div>
-
-        <div className="mt-4">
-          <div className="flex justify-between">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="mt-4">
             <label
               className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
-              htmlFor="loggingPassword"
+              htmlFor="name"
+            >
+              Full Name
+            </label>
+            <input
+              type="text"
+              placeholder="Full Name"
+              id="name"
+              className="input input-bordered w-full"
+              {...register('name')}
+            />
+          </div>
+          <p className="text-sm text-error mt-1">{errors.name?.message}</p>
+
+          <div className="mt-4">
+            <label
+              className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
+              htmlFor="emailAddress"
+            >
+              Email Address
+            </label>
+            <input
+              type="email"
+              placeholder="Email"
+              id="emailAddress"
+              className="input input-bordered w-full"
+              {...register('email')}
+            />
+          </div>
+          <p className="text-sm text-error mt-1">{errors.email?.message}</p>
+
+          <div className="mt-4">
+            <label
+              className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
+              htmlFor="password"
             >
               Password
             </label>
-            <Link
-              to="/forget-password"
-              className="text-xs text-gray-500 dark:text-gray-300 hover:underline"
-            >
-              Forget Password?
-            </Link>
+
+            <input
+              type="password"
+              placeholder="Password"
+              id="password"
+              className="input input-bordered w-full"
+              {...register('password')}
+            />
           </div>
+          <p className="text-sm text-error mt-1">{errors.password?.message}</p>
 
-          <input
-            type="password"
-            placeholder="Password"
-            id="loggingPassword"
-            className="input input-bordered w-full"
-          />
-        </div>
+          <div className="mt-4">
+            <label
+              className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
+              htmlFor="confirmPassword"
+            >
+              Confirm Password
+            </label>
 
-        <div className="mt-8">
-          <button className="w-full px-4 py-2 tracking-wide btn font-normal normal-case text-base">
-            Login
-          </button>
-        </div>
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              id="confirmPassword"
+              className="input input-bordered w-full"
+              {...register('confirmPassword')}
+            />
+          </div>
+          <p className="text-sm text-error mt-1">{errors.confirmPassword?.message}</p>
 
-        <Divider link="/sign-up" text="or Sign Up" />
+          <div className="mt-8">
+            <button className="w-full px-4 py-2 tracking-wide btn font-normal normal-case text-base">
+              Sign up
+            </button>
+          </div>
+        </form>
+
+        <Divider link="/login" text="or Login" />
       </div>
     </div>
   );

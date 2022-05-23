@@ -1,13 +1,14 @@
+import { Link } from 'react-router-dom';
 import { Divider, SocialLogin } from '../components';
 
 export const Login = () => {
   return (
-    <div className="min-h-[90vh] flex justify-center items-center bg-slate-100">
+    <div className="min-h-[90vh] flex justify-center items-center bg-slate-100 p-5">
       <div className="bg-base-100 shadow-xl w-full max-w-lg px-6 py-8 md:px-8 rounded">
-        <p className="text-xl text-center text-gray-600 dark:text-gray-200">Sign up here!</p>
+        <p className="text-xl text-center text-gray-600 dark:text-gray-200">Welcome back!</p>
         <SocialLogin />
 
-        <Divider text="or Sign up with email" />
+        <Divider text="or Log in with email" />
 
         <div className="mt-4">
           <label
@@ -25,12 +26,20 @@ export const Login = () => {
         </div>
 
         <div className="mt-4">
-          <label
-            className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
-            htmlFor="loggingPassword"
-          >
-            Password
-          </label>
+          <div className="flex justify-between">
+            <label
+              className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
+              htmlFor="loggingPassword"
+            >
+              Password
+            </label>
+            <Link
+              to="/forget-password"
+              className="text-xs text-gray-500 dark:text-gray-300 hover:underline"
+            >
+              Forget Password?
+            </Link>
+          </div>
 
           <input
             type="password"
@@ -46,7 +55,7 @@ export const Login = () => {
           </button>
         </div>
 
-        <Divider link="/login" text="or Log in" />
+        <Divider link="/sign-up" text="or Sign up" />
       </div>
     </div>
   );
