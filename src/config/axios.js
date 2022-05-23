@@ -5,7 +5,7 @@ import auth from './firebase';
 
 const url = 'http://localhost:5000';
 const authFetch = axios.create({
-  baseUrl: url,
+  baseURL: url,
 });
 
 authFetch.interceptors.request.use(

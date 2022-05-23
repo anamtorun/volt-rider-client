@@ -8,6 +8,7 @@ import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../config/firebase';
 import loginSchema from '../validation/loginSchema';
 import { splitFirebaseErrorMsg } from '../utils/splitFirebaseErrorMsg';
+import useToken from '../hooks/useToken';
 
 const classes = 'text-base absolute top-1/2 right-5 -translate-y-1/2 cursor-pointer';
 
@@ -23,6 +24,8 @@ export const Login = () => {
     resolver: yupResolver(loginSchema),
   });
 
+  const [token] = useToken(user);
+
   const navigate = useNavigate();
   const { state } = useLocation();
 
@@ -31,10 +34,10 @@ export const Login = () => {
   };
 
   useEffect(() => {
-    if (user) {
+    if (token) {
       navigate(state?.path || '/');
     }
-  }, [user, navigate, state]);
+  }, [token, navigate, state]);
 
   return (
     <div className="min-h-[90vh] flex justify-center items-center bg-slate-100 p-5">

@@ -1,21 +1,24 @@
 import { useEffect, useState } from 'react';
+import authFetch from '../config/axios';
 
 const useToken = (user, name) => {
   const [token, setToken] = useState();
 
   useEffect(() => {
-    const fnc = async (done) => {
+    const fnc = async () => {
       const email = user?.user?.email;
-      const name = user?.user?.displayName || name;
+      const username = user?.user?.displayName || name;
 
       if (email) {
-        const { data } = put('/users', { email, name });
+        const { data } = await authFetch.put('/users', { email, name: username });
 
         setToken(data.token);
         localStorage.setItem('fire_token', data.token);
       }
     };
-  });
+
+    fnc();
+  }, [user, name]);
   return [token];
 };
 

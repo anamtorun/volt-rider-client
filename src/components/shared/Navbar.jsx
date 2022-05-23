@@ -12,6 +12,7 @@ export const Navbar = () => {
 
   const handleSignOut = async () => {
     await signOut(auth);
+    localStorage.removeItem('fire_token');
     navigate('/');
   };
 

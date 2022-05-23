@@ -4,40 +4,46 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useEffect, useState } from 'react';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { splitFirebaseErrorMsg } from '../utils/splitFirebaseErrorMsg';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import signUpSchema from '../validation/signUpSchema';
 import auth from '../config/firebase';
-import { useLocation, useNavigate } from 'react-router-dom';
 import alert from '../utils/CustomAlert';
-import { splitFirebaseErrorMsg } from '../utils/splitFirebaseErrorMsg';
+import useToken from '../hooks/useToken';
 
 const classes = 'text-base absolute top-1/2 right-5 -translate-y-1/2 cursor-pointer';
 
 export const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(
-    auth,
-    { sendEmailVerification: true }
-  );
   const [updateProfile] = useUpdateProfile(auth);
+
   const navigate = useNavigate();
   const { state } = useLocation();
 
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(signUpSchema),
   });
 
+  const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(
+    auth,
+    { sendEmailVerification: true }
+  );
+
+  const [token] = useToken(user, getValues('name'));
+
   useEffect(() => {
-    if (user) {
+    if (token) {
       alert('success', 'Account created successfully');
       navigate(state?.path || '/');
     }
-  }, [user, navigate, state]);
+  }, [token, navigate, state]);
 
   const onSubmit = async (data) => {
     await createUserWithEmailAndPassword(data.email, data.password);
