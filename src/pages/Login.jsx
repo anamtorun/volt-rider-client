@@ -1,15 +1,19 @@
-import { Link } from 'react-router-dom';
-import { Divider, SocialLogin } from '../components';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Divider, ErrorMessage, SocialLogin } from '../components';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import auth from '../config/firebase';
 import loginSchema from '../validation/loginSchema';
+import { splitFirebaseErrorMsg } from '../utils/splitFirebaseErrorMsg';
 
 const classes = 'text-base absolute top-1/2 right-5 -translate-y-1/2 cursor-pointer';
 
 export const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
 
   const {
     register,
@@ -18,12 +22,29 @@ export const Login = () => {
   } = useForm({
     resolver: yupResolver(loginSchema),
   });
-  const onSubmit = (data) => console.log(data);
+
+  const navigate = useNavigate();
+  const { state } = useLocation();
+
+  const onSubmit = async (data) => {
+    await signInWithEmailAndPassword(data.email, data.password);
+  };
+
+  useEffect(() => {
+    if (user) {
+      navigate(state?.path || '/');
+    }
+  }, [user, navigate, state]);
 
   return (
     <div className="min-h-[90vh] flex justify-center items-center bg-slate-100 p-5">
       <div className="bg-base-100 shadow-xl w-full max-w-lg px-6 py-8 md:px-8 rounded">
-        <p className="text-xl text-center text-gray-600 dark:text-gray-200">Welcome back!</p>
+        {!error ? (
+          <p className="text-xl text-center text-gray-600 dark:text-gray-200">Welcome back!</p>
+        ) : (
+          <ErrorMessage text={splitFirebaseErrorMsg(error.message)} />
+        )}
+
         <SocialLogin />
 
         <Divider text="or Log in with email" />
@@ -86,9 +107,11 @@ export const Login = () => {
           <div className="mt-8">
             <button
               type="submit"
-              className="w-full px-4 py-2 tracking-wide btn font-normal normal-case text-base"
+              className={`w-full px-4 py-2 tracking-wide btn font-normal normal-case text-base ${
+                loading && 'loading'
+              }`}
             >
-              Login
+              {!loading && 'Login'}
             </button>
           </div>
         </form>
