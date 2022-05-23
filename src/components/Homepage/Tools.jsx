@@ -6,7 +6,6 @@ import axios from 'axios';
 
 const fetchData = async () => {
   const { data } = await axios('http://localhost:5000/products');
-  console.log(data);
   return data;
 };
 

@@ -11,3 +11,4 @@ export { Footer } from './shared/Footer';
 export { Spinner } from './shared/Spinner';
 
 export { SocialLogin } from './Auth/SocialLogin';
+export { PrivateRoute } from './Auth/PrivateRoute';

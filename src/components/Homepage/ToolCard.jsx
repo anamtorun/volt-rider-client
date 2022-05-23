@@ -1,5 +1,7 @@
+import { Link } from 'react-router-dom';
+
 export const ToolCard = ({ item }) => {
-  const { name, description, min_order_quantity, available_quantity, price, image } = item;
+  const { _id, name, description, min_order_quantity, available_quantity, price, image } = item;
 
   return (
     <div className="max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
@@ -31,9 +33,12 @@ export const ToolCard = ({ item }) => {
           <span className="font-medium ml-1"> {min_order_quantity}</span>
         </div>
         <div className="flex mt-6">
-          <button className="btn-md btn btn-outline w-full text-gray-800 tracking-wide font-bold">
+          <Link
+            to={`/products/details/${_id}`}
+            className="btn-md btn btn-outline w-full text-gray-800 tracking-wide font-bold"
+          >
             Order now
-          </button>
+          </Link>
         </div>
       </div>
     </div>
