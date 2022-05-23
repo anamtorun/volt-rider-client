@@ -7,7 +7,7 @@ import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-fireb
 
 import signUpSchema from '../validation/signUpSchema';
 import auth from '../config/firebase';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import alert from '../utils/CustomAlert';
 import { splitFirebaseErrorMsg } from '../utils/splitFirebaseErrorMsg';
 
@@ -22,6 +22,7 @@ export const SignUp = () => {
   );
   const [updateProfile] = useUpdateProfile(auth);
   const navigate = useNavigate();
+  const { state } = useLocation();
 
   const {
     register,
@@ -34,9 +35,9 @@ export const SignUp = () => {
   useEffect(() => {
     if (user) {
       alert('success', 'Account created successfully');
-      navigate('/');
+      navigate(state?.path || '/');
     }
-  }, [user, navigate]);
+  }, [user, navigate, state]);
 
   const onSubmit = async (data) => {
     await createUserWithEmailAndPassword(data.email, data.password);

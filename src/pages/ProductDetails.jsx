@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import auth from '../config/firebase';
 import { Spinner } from '../components';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const phoneRegex =
   /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
@@ -22,12 +22,12 @@ export const ProductDetails = () => {
   };
 
   const { data, isLoading } = useQuery(['data', id], fetchData);
-
   const {
     register,
     handleSubmit,
     formState: { errors },
     setValue,
+    getValues,
   } = useForm({
     defaultValues: {
       name: user?.displayName,
@@ -38,12 +38,15 @@ export const ProductDetails = () => {
     },
     mode: 'onChange',
   });
+  const [, setTotal] = useState(data?.price * data?.min_order_quantity);
 
   useEffect(() => {
     if (data) {
       setValue('orderQuantity', data.min_order_quantity);
+      setTotal(data?.price * data?.min_order_quantity);
     }
   }, [data, setValue]);
+
   const onSubmit = (values) => console.log(values);
 
   if (isLoading || loading) {
@@ -193,6 +196,7 @@ export const ProductDetails = () => {
                   valueAsNumber: true,
                   validate: {
                     number: (v) => !isNaN(v) || 'should be a number',
+                    decimal: (v) => Number.isInteger(v) || "Can't be a decimal number",
                   },
                 })}
               />
@@ -205,6 +209,15 @@ export const ProductDetails = () => {
             {errors.orderQuantity?.type === 'max' && (
               <p className="text-sm text-error mt-1">{`Can not order more than ${data.available_quantity}`}</p>
             )}
+
+            <div className="flex items-center gap-2 mt-3">
+              <p className="text-base font-semibold text-gray-600">Total:</p>
+              <span className="text-base text-success font-semibold">
+                $ {errors.orderQuantity ? 0 : (data?.price * getValues('orderQuantity')).toFixed(2)}
+              </span>
+            </div>
+
+            {/* Submit button */}
             <button
               type="submit"
               className={`mt-8 w-full px-4 py-2 tracking-wide btn font-normal normal-case text-base ${
@@ -214,6 +227,7 @@ export const ProductDetails = () => {
             >
               {!loading && 'Place Order'}
             </button>
+            {/* Submit button */}
           </form>
         </div>
       </div>
