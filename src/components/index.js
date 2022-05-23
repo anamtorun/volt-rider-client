@@ -12,3 +12,5 @@ export { Spinner } from './shared/Spinner';
 
 export { SocialLogin } from './Auth/SocialLogin';
 export { PrivateRoute } from './Auth/PrivateRoute';
+
+export { Container } from './Dashboard/Container';

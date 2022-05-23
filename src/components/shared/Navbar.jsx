@@ -1,10 +1,12 @@
 import { signOut } from 'firebase/auth';
+import { useId } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import auth from '../../config/firebase';
 import links from '../../utils/Links';
 
 export const Navbar = () => {
+  const id = useId();
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
 
@@ -37,8 +39,13 @@ export const Navbar = () => {
             tabIndex="0"
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
+            {user && (
+              <li key={`${id}-dashboard`}>
+                <NavLink to="/dashboard">Dashboard</NavLink>
+              </li>
+            )}
             {links.map((link, i) => (
-              <li key={i}>
+              <li key={`${id}-${link.name}`}>
                 <NavLink to={link.path}>{link.name}</NavLink>
               </li>
             ))}
@@ -50,6 +57,11 @@ export const Navbar = () => {
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">
+          {user && (
+            <li key={`${id}-dashboard`}>
+              <NavLink to="/dashboard">Dashboard</NavLink>
+            </li>
+          )}
           {links.map((link, i) => (
             <li key={i}>
               <NavLink to={link.path}>{link.name}</NavLink>

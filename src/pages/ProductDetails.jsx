@@ -84,6 +84,7 @@ export const ProductDetails = () => {
         </div>
         <div>
           <form onSubmit={handleSubmit(onSubmit)} className="max-w-lg mx-auto shadow p-8 pt-4">
+            <h2 className="text-center font-bold text-2xl text-neutral">Order Form</h2>
             {/* Name */}
             <div>
               <label
