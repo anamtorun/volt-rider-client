@@ -12,15 +12,15 @@ import MySwal from '../../config/sweetAlert';
 export const MyOrders = () => {
   const [user, loading] = useAuthState(auth);
 
-  const fetchData = async () => {
+  const fetchOrders = async () => {
     if (user) {
-      const { data } = await authFetch.get(`/orders/${user.email}`);
+      const { data } = await authFetch.get(`/orders/${user.uid}`);
       return data;
     }
   };
-  const { data, isLoading, refetch } = useQuery('data', fetchData);
+  const { data: orderList, isLoading, refetch } = useQuery('data', fetchOrders);
 
-  const handleCancel = async (id) => {
+  const handleCancel = async (orderId, productId, orderQuantity) => {
     const res = await confirmModal(
       'You want to cancel your order?',
       'Yes, cancel it',
@@ -31,15 +31,15 @@ export const MyOrders = () => {
     );
 
     if (res.isConfirmed) {
-      const { data: response } = await authFetch(`/orders/cancel/${id}`);
+      const { data: response } = await authFetch.delete(`/orders/cancel/${orderId}`);
 
-      if (response.deleteCount > 0) {
+      if (response) {
+        await authFetch.put(`/products/update-available-quantity/${productId}`, {
+          quantity: orderQuantity,
+        });
+
         MySwal.fire('Success', 'Your order is cancelled successfully', 'success');
         refetch();
-
-        await authFetch.patch(`/products/update-available-quantity/${id}`, {
-          quantity: data.orderQuantity,
-        });
       }
     }
   };
@@ -49,7 +49,7 @@ export const MyOrders = () => {
   }
   return (
     <section className="py-10 px-8 xl:px-20">
-      {data?.length === 0 ? (
+      {orderList?.length === 0 ? (
         <h1 className="text-2xl lg:text-3xl text-neutral font-semibold text-center py-20">
           You have not ordered anything yet!
         </h1>
@@ -111,7 +111,7 @@ export const MyOrders = () => {
             </thead>
 
             <tbody className="divide-y divide-gray-100">
-              {data?.map((order, i) => (
+              {orderList?.map((order) => (
                 <tr key={order._id}>
                   <td className="p-4 font-medium whitespace-nowrap">{order.productName}</td>
                   <td className="p-4 whitespace-nowrap">
@@ -155,7 +155,9 @@ export const MyOrders = () => {
                         <button
                           type="button"
                           className="btn btn-sm btn-error normal-case text-neutral text-opacity-80"
-                          onClick={() => handleCancel(order?._id)}
+                          onClick={() =>
+                            handleCancel(order._id, order.productId, order.orderQuantity)
+                          }
                         >
                           Cancel
                         </button>
@@ -166,7 +168,7 @@ export const MyOrders = () => {
               ))}
             </tbody>
 
-            {data?.length > 10 && (
+            {orderList?.length > 10 && (
               <tfoot>
                 <tr className="bg-slate-50">
                   <th className="p-4 font-medium text-left text-gray-900 whitespace-nowrap">

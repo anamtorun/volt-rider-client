@@ -9,6 +9,7 @@ export { Divider } from './shared/Divider';
 export { ErrorMessage } from './shared/ErrorMessage';
 export { Footer } from './shared/Footer';
 export { Spinner } from './shared/Spinner';
+export { Ratings } from './shared/Ratings';
 
 export { SocialLogin } from './Auth/SocialLogin';
 export { PrivateRoute } from './Auth/PrivateRoute';

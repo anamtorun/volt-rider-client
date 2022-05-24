@@ -58,16 +58,17 @@ export const ProductDetails = () => {
       address: values.address,
       phoneNumber: values.phoneNumber,
       orderQuantity: values.orderQuantity,
-      total: values.orderQuantity * data?.price,
-      productName: data?.name,
+      total: values.orderQuantity * data.price,
+      productName: data.name,
       productId: id,
+      userId: user.uid,
       paid: false,
     };
 
     const { data: response } = await authFetch.post('/orders', orderData);
     if (response.acknowledged) {
       const availableQuantity = data?.available_quantity - values.orderQuantity;
-      await authFetch.patch(`/products/${id}`, { available_quantity: availableQuantity });
+      await authFetch.put(`/products/${id}`, { available_quantity: availableQuantity });
 
       customAlert('success', 'Order is placed');
       navigate('/dashboard');

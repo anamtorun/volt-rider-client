@@ -19,9 +19,5 @@ export const confirmModal = async (
     cancelButtonText: cancelButtonText,
   });
 
-  if (res.isConfirmed) {
-    MySwal.fire(title, successText, icon);
-  }
-
   return res;
 };
