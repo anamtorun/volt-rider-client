@@ -30,7 +30,11 @@ authFetch.interceptors.response.use(
     }
 
     if (error.response.status === 404) {
-      customAlert('warning', 'Not found! Try reloading again.');
+      customAlert('warning', error.response.data.message || 'Not found');
+    }
+
+    if (error.response.status === 400) {
+      customAlert('warning', error.response.data.message || 'Bad request');
     }
 
     return Promise.reject(error);
