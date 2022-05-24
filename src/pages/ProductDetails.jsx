@@ -70,7 +70,7 @@ export const ProductDetails = () => {
       await authFetch.patch(`/products/${id}`, { available_quantity: availableQuantity });
 
       customAlert('success', 'Order is placed');
-      navigate('/dashboard/my-orders');
+      navigate('/dashboard');
     }
   };
 
