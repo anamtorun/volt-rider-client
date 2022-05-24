@@ -1,11 +1,14 @@
 import axios from 'axios';
+import auth from '../config/firebase';
+import authFetch from '../config/axios';
+
 import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
-import { useParams } from 'react-router-dom';
-import auth from '../config/firebase';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Spinner } from '../components';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useEffect, useState } from 'react';
+import customAlert from '../utils/CustomAlert';
 
 const phoneRegex =
   /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
@@ -15,6 +18,7 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export const ProductDetails = () => {
   const { id } = useParams();
   const [user, loading] = useAuthState(auth);
+  const navigate = useNavigate();
 
   const fetchData = async () => {
     const { data } = await axios(`http://localhost:5000/products/details/${id}`);
@@ -47,7 +51,28 @@ export const ProductDetails = () => {
     }
   }, [data, setValue]);
 
-  const onSubmit = (values) => console.log(values);
+  const onSubmit = async (values) => {
+    const orderData = {
+      name: values.name,
+      email: values.email,
+      address: values.address,
+      phoneNumber: values.phoneNumber,
+      orderQuantity: values.orderQuantity,
+      total: values.orderQuantity * data?.price,
+      productName: data?.name,
+      productId: id,
+      paid: false,
+    };
+
+    const { data: response } = await authFetch.post('/orders', orderData);
+    if (response.acknowledged) {
+      const availableQuantity = data?.available_quantity - values.orderQuantity;
+      await authFetch.patch(`/products/${id}`, { available_quantity: availableQuantity });
+
+      customAlert('success', "Order's taken successfully");
+      navigate('/dashboard/my-orders');
+    }
+  };
 
   if (isLoading || loading) {
     return <Spinner />;

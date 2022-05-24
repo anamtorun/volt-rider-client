@@ -10,7 +10,7 @@ const useToken = (user, name) => {
       const username = user?.user?.displayName || name;
 
       if (email) {
-        const { data } = await authFetch.put('/users', { email, name: username });
+        const { data } = await authFetch.put('/users', { email, name: username, role: 'user' });
 
         setToken(data.token);
         localStorage.setItem('fire_token', data.token);
