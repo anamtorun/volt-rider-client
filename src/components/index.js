@@ -13,5 +13,6 @@ export { Ratings } from './shared/Ratings';
 
 export { SocialLogin } from './Auth/SocialLogin';
 export { PrivateRoute } from './Auth/PrivateRoute';
+export { RequireAdmin } from './Auth/RequireAdmin';
 
 export { Container } from './Dashboard/Container';

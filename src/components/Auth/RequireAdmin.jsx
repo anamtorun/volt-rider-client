@@ -9,7 +9,7 @@ export const RequireAdmin = () => {
   const [user, loading] = useAuthState(auth);
   const [admin, checkingStatus] = useCheckAdmin(user);
 
-  if (loading || checkingStatus) {
+  if (checkingStatus || loading) {
     return <Spinner />;
   }
 

@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { Navbar, Footer, PrivateRoute } from './components';
+import { Navbar, Footer, PrivateRoute, RequireAdmin } from './components';
 import {
   SignUp,
   Home,
@@ -25,8 +25,16 @@ function App() {
             <Route index element={<MyProfile />} />
             <Route path="my-orders" element={<MyOrders />} />
             <Route path="add-review" element={<AddReview />} />
+
+            <Route element={<RequireAdmin />}>
+              <Route path="manage-users" element={<div></div>} />
+              <Route path="manage-all-orders" element={<div></div>} />
+              <Route path="add-product" element={<div></div>} />
+              <Route path="manage-products" element={<div></div>} />
+            </Route>
           </Route>
         </Route>
+
         <Route path="/login" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
       </Routes>

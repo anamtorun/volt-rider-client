@@ -23,7 +23,7 @@ export const Container = () => {
 
   return (
     <div className="drawer drawer-mobile bg-slate-50">
-      <textarea id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+      <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
 
       <div className="drawer-content flex flex-col">
         <label
