@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
 /* Swiper slider */
 .swiper-container {
   overflow: hidden;

@@ -21,9 +21,12 @@ export const Banner = () => {
           </h1>
 
           <div className="flex flex-wrap gap-4 mt-8 text-center justify-center lg:justify-start">
-            <button className="btn btn-primary block px-10 py-3 text-sm normal-case font-medium rounded shadow">
+            <a
+              href="#products"
+              className="btn btn-primary block px-10 py-3 text-sm normal-case font-medium rounded shadow"
+            >
               Get Started
-            </button>
+            </a>
 
             <Link
               to="/"

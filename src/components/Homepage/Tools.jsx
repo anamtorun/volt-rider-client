@@ -16,7 +16,7 @@ export const Tools = () => {
     return <Spinner />;
   }
   return (
-    <section className="py-10 lg:py-20">
+    <section className="py-10 lg:py-20" id="products">
       <h2 className="text-4xl text-center font-bold text-neutral">Our Products</h2>
 
       <section className="px-4 mt-12 lg:mt-16 max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">

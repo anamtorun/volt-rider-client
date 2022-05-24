@@ -69,7 +69,7 @@ export const ProductDetails = () => {
       const availableQuantity = data?.available_quantity - values.orderQuantity;
       await authFetch.patch(`/products/${id}`, { available_quantity: availableQuantity });
 
-      customAlert('success', "Order's taken successfully");
+      customAlert('success', 'Order is placed');
       navigate('/dashboard/my-orders');
     }
   };
