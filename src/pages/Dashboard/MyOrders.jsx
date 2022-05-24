@@ -128,7 +128,7 @@ export const MyOrders = () => {
                   <td className="p-4 text-gray-700 whitespace-nowrap">{order.orderQuantity}</td>
 
                   <td className="p-4 text-gray-700 whitespace-nowrap">
-                    $&nbsp;{order.total.toFixed(2)}
+                    $&nbsp;{order.total?.toFixed(2)}
                   </td>
                   <td className="p-4 text-gray-700 whitespace-nowrap">
                     {order?.paid ? (
