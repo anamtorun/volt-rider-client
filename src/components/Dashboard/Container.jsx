@@ -1,12 +1,25 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { IoIosArrowForward } from 'react-icons/io';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useCheckAdmin } from '../../hooks/useCheckAdmin';
+import { Spinner } from '../../components';
+import auth from '../../config/firebase';
+import adminLinks from '../../utils/adminLinks';
+import userLinks from '../../utils/userLinks';
+
+const activeClass = 'bg-primary text-base-100';
+const inactiveClass = 'bg-transparent hover:bg-base-200 active:bg-primary';
 
 export const Container = () => {
+  const [user, loading] = useAuthState(auth);
+  const [admin, checkingStatus] = useCheckAdmin(user);
   const location = useLocation();
 
   const matchRoute = (route) => route === location.pathname;
-  const activeClass = 'bg-primary text-base-100';
-  const inactiveClass = 'bg-transparent hover:bg-base-200 active:bg-primary';
+
+  if (loading || checkingStatus) {
+    return <Spinner />;
+  }
 
   return (
     <div className="drawer drawer-mobile bg-slate-50">
@@ -32,25 +45,33 @@ export const Container = () => {
               to="/dashboard"
               className={matchRoute('/dashboard') ? activeClass : inactiveClass}
             >
-              My Orders
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/dashboard/add-review"
-              className={matchRoute('/dashboard/add-review') ? activeClass : inactiveClass}
-            >
-              Add Review
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/dashboard/my-profile"
-              className={matchRoute('/dashboard/my-profile') ? activeClass : inactiveClass}
-            >
               My Profile
             </Link>
           </li>
+
+          {!admin &&
+            userLinks.map((link, i) => (
+              <li key={i}>
+                <Link
+                  to={link.path}
+                  className={matchRoute(link.path) ? activeClass : inactiveClass}
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
+
+          {admin &&
+            adminLinks.map((link, i) => (
+              <li key={i}>
+                <Link
+                  to={link.path}
+                  className={matchRoute(link.path) ? activeClass : inactiveClass}
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
         </ul>
       </div>
     </div>

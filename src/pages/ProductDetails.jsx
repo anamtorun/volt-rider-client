@@ -71,7 +71,7 @@ export const ProductDetails = () => {
       await authFetch.put(`/products/${id}`, { available_quantity: availableQuantity });
 
       customAlert('success', 'Order is placed');
-      navigate('/dashboard');
+      navigate('/dashboard/my-orders');
     }
   };
 

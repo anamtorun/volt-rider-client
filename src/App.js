@@ -22,9 +22,9 @@ function App() {
           <Route path="/products/details/:id" element={<ProductDetails />} />
 
           <Route path="/dashboard" element={<Dashboard />}>
-            <Route index element={<MyOrders />} />
+            <Route index element={<MyProfile />} />
+            <Route path="my-orders" element={<MyOrders />} />
             <Route path="add-review" element={<AddReview />} />
-            <Route path="my-profile" element={<MyProfile />} />
           </Route>
         </Route>
         <Route path="/login" element={<Login />} />
