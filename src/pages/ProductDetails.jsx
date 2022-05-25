@@ -10,6 +10,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useEffect, useState } from 'react';
 import customAlert from '../utils/CustomAlert';
 import { useCheckAdmin } from '../hooks/useCheckAdmin';
+import { ImWarning } from 'react-icons/im';
 
 const phoneRegex =
   /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
@@ -44,11 +45,16 @@ export const ProductDetails = () => {
     mode: 'onChange',
   });
   const [, setTotal] = useState(data?.price * data?.min_order_quantity);
+  const [stockIsLow, setStockIsLow] = useState(false);
 
   useEffect(() => {
     if (data) {
       setValue('orderQuantity', data.min_order_quantity);
       setTotal(data?.price * data?.min_order_quantity);
+
+      if (data.available_quantity < data.min_order_quantity) {
+        setStockIsLow(true);
+      }
     }
   }, [data, setValue]);
 
@@ -109,6 +115,18 @@ export const ProductDetails = () => {
                 <p>{data?.min_order_quantity}</p>
               </div>
             </div>
+
+            {stockIsLow && (
+              <p className="flex items-baseline gap-2 font-medium py-2 px-4 rounded-md bg-amber-400 text-neutral">
+                <i>
+                  <ImWarning className="font-bold" />
+                </i>
+                <span>
+                  We are not taking any order for this product at the moment as the available stock
+                  is not enough.
+                </span>
+              </p>
+            )}
           </div>
           {/* Description */}
         </div>
@@ -238,11 +256,14 @@ export const ProductDetails = () => {
                 <p className="text-sm text-error mt-1">{`Can not order more than ${data.available_quantity}`}</p>
               )}
 
+              {/* Total */}
               <div className="flex items-center gap-2 mt-3">
                 <p className="text-base font-semibold text-gray-600">Total:</p>
                 <span className="text-base text-success font-semibold">
                   ${' '}
-                  {errors.orderQuantity ? 0 : (data?.price * getValues('orderQuantity')).toFixed(2)}
+                  {errors.orderQuantity || stockIsLow
+                    ? 0
+                    : (data?.price * getValues('orderQuantity')).toFixed(2)}
                 </span>
               </div>
 
@@ -252,7 +273,9 @@ export const ProductDetails = () => {
                 className={`mt-8 w-full px-4 py-2 tracking-wide btn font-normal normal-case text-base ${
                   loading && 'loading'
                 }`}
-                disabled={errors.orderQuantity}
+                disabled={
+                  errors.orderQuantity || data?.available_quantity < data?.min_order_quantity
+                }
               >
                 {!loading && 'Place Order'}
               </button>
