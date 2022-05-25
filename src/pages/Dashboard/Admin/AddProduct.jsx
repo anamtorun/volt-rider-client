@@ -5,8 +5,10 @@ import axios from 'axios';
 import authFetch from '../../../config/axios';
 import MySwal from '../../../config/sweetAlert';
 import customAlert from '../../../utils/CustomAlert';
+import { useState } from 'react';
 
 export const AddProduct = () => {
+  const [loading, setLoading] = useState(false);
   const {
     handleSubmit,
     register,
@@ -18,11 +20,12 @@ export const AddProduct = () => {
 
   const onSubmit = async (data) => {
     const formData = new FormData();
-    console.log(data);
+
     formData.append('file', data.image[0]);
-    formData.append('upload_preset', 'xg2wgbbh');
+    formData.append('upload_preset', process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET);
 
     const postImage = async () => {
+      setLoading(true);
       try {
         const response = await axios.post(
           'https://api.cloudinary.com/v1_1/dv3wezqsc/image/upload',
@@ -43,12 +46,14 @@ export const AddProduct = () => {
 
           const serverResponse = await authFetch.post('/products', productInfo);
           if (serverResponse.status === 201) {
-            MySwal.fire('Success', 'Product was added', 'success');
+            setLoading(false);
             reset();
+            MySwal.fire('Success', 'Product was added', 'success');
           }
         }
       } catch (error) {
         customAlert('error', 'Something went wrong');
+        setLoading(false);
       }
     };
 
@@ -172,7 +177,9 @@ export const AddProduct = () => {
           </div>
           <p className="text-sm text-error mt-1">{errors.image?.message}</p>
 
-          <button className="btn w-full mt-6">Add Product</button>
+          <button className={`btn w-full mt-6 ${loading && 'loading'}`}>
+            {!loading && 'Add Product'}
+          </button>
         </form>
       </div>
     </section>
