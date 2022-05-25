@@ -193,7 +193,7 @@ export const AllOrders = () => {
                     <div className="flex items-center">Amount Paid</div>
                   </th>
                   <th className="p-4 font-medium text-left text-gray-900 whitespace-nowrap">
-                    <div className="flex items-center">Actions</div>
+                    <div className="flex items-center">Actions (Mark Ship)</div>
                   </th>
                 </tr>
               </tfoot>

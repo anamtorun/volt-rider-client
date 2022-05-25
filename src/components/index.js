@@ -16,3 +16,4 @@ export { PrivateRoute } from './Auth/PrivateRoute';
 export { RequireAdmin } from './Auth/RequireAdmin';
 
 export { Container } from './Dashboard/Container';
+export { EditProfile } from './Dashboard/EditProfile';
