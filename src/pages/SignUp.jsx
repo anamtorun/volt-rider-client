@@ -72,7 +72,7 @@ export const SignUp = () => {
             >
               Full Name
             </label>
-            <textarea
+            <input
               type="text"
               placeholder="Full Name"
               id="name"
@@ -89,7 +89,7 @@ export const SignUp = () => {
             >
               Email Address
             </label>
-            <textarea
+            <input
               type="email"
               placeholder="Email"
               id="emailAddress"
@@ -109,7 +109,7 @@ export const SignUp = () => {
             </label>
 
             <div className="relative">
-              <textarea
+              <input
                 type={showPassword ? 'text' : 'password'}
                 placeholder="Password"
                 id="password"
@@ -138,7 +138,7 @@ export const SignUp = () => {
             </label>
 
             <div className="relative">
-              <textarea
+              <input
                 type={showConfirmPassword ? 'text' : 'password'}
                 placeholder="Confirm Password"
                 id="confirmPassword"

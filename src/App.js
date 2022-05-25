@@ -9,6 +9,10 @@ import {
   MyOrders,
   AddReview,
   MyProfile,
+  AllUsers,
+  AllOrders,
+  AddProduct,
+  AllProducts,
 } from './pages';
 
 function App() {
@@ -27,10 +31,10 @@ function App() {
             <Route path="add-review" element={<AddReview />} />
 
             <Route element={<RequireAdmin />}>
-              <Route path="manage-users" element={<div></div>} />
-              <Route path="manage-all-orders" element={<div></div>} />
-              <Route path="add-product" element={<div></div>} />
-              <Route path="manage-products" element={<div></div>} />
+              <Route path="manage-users" element={<AllUsers />} />
+              <Route path="manage-all-orders" element={<AllOrders />} />
+              <Route path="add-product" element={<AddProduct />} />
+              <Route path="manage-products" element={<AllProducts />} />
             </Route>
           </Route>
         </Route>

@@ -1,13 +1,6 @@
 import MySwal from '../config/sweetAlert';
 
-export const confirmModal = async (
-  warningText,
-  confirmButtonText,
-  cancelButtonText,
-  title,
-  icon,
-  successText
-) => {
+export const confirmModal = async (warningText, confirmButtonText, cancelButtonText) => {
   const res = await MySwal.fire({
     title: 'Are you sure?',
     text: warningText,
