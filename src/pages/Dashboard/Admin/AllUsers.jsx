@@ -3,6 +3,7 @@ import { Spinner } from '../../../components';
 import authFetch from '../../../config/axios';
 import MySwal from '../../../config/sweetAlert';
 import { confirmModal } from '../../../utils/ConfirmModal';
+import customAlert from '../../../utils/CustomAlert';
 
 const fetchAllUser = async () => {
   const { data } = await authFetch('/users');
@@ -20,10 +21,30 @@ export const AllUsers = () => {
       if (response.status === 204) {
         MySwal.fire('Success', `${name} was removed`, 'success');
         refetch();
+      } else {
+        customAlert('error', response.data.message);
       }
     }
   };
-  const handleMakeAdmin = async (userId, name) => {};
+
+  const handleMakeAdmin = async (userId, name) => {
+    const res = await confirmModal(
+      `You want to make ${name} an admin?`,
+      'Yes, make admin',
+      'No, cancel'
+    );
+
+    if (res.isConfirmed) {
+      const response = await authFetch.patch(`/users/make-admin/${userId}`, {});
+
+      if (response.status === 200) {
+        MySwal.fire('Success', `${name} is now an admin`, 'success');
+        refetch();
+      } else {
+        customAlert('error', response.data.message);
+      }
+    }
+  };
 
   if (isLoading) {
     return <Spinner />;
