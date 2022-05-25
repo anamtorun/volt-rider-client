@@ -1,18 +1,31 @@
 import { useQuery } from 'react-query';
 import { Spinner } from '../../../components';
-import authFetch from '../../../config/axios';
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
-import { AiOutlineCheck, AiOutlineClose } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+import { confirmModal } from '../../../utils/ConfirmModal';
+import authFetch from '../../../config/axios';
+import MySwal from '../../../config/sweetAlert';
+
 const fetchData = async () => {
   const { data } = await authFetch('/products');
   return data;
 };
 
 export const AllProducts = () => {
-  const { data: productList, isLoading } = useQuery('products', fetchData);
+  const { data: productList, isLoading, refetch } = useQuery('products', fetchData);
 
-  const handleCancel = async () => {};
+  const handleDelete = async (prodId) => {
+    const res = await confirmModal('You want to delete this product?', 'Yes, delete', 'No, cancel');
+
+    if (res.isConfirmed) {
+      const response = await authFetch.delete(`/products/${prodId}`);
+
+      if (response.status === 200) {
+        refetch();
+        MySwal.fire('Success', '', 'success');
+      }
+    }
+  };
 
   if (isLoading) {
     return <Spinner />;
@@ -81,8 +94,8 @@ export const AllProducts = () => {
               {productList?.map((product) => (
                 <tr key={product._id}>
                   <td className="p-4">
-                    <div class="avatar">
-                      <div class="w-16 rounded-full ring ring-slate-200 ring-offset-base-100 ring-offset-2">
+                    <div className="avatar">
+                      <div className="w-16 rounded-full ring ring-slate-200 ring-offset-base-100 ring-offset-2">
                         <img src={product.image} alt={product.name} />
                       </div>
                     </div>
@@ -105,7 +118,12 @@ export const AllProducts = () => {
                         Details
                       </Link>
                       <button className="btn btn-accent btn-xs">Edit</button>
-                      <button className="btn btn-error btn-xs">Delete</button>
+                      <button
+                        onClick={() => handleDelete(product._id)}
+                        className="btn btn-error btn-xs"
+                      >
+                        Delete
+                      </button>
                     </div>
                   </td>
                 </tr>
