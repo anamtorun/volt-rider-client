@@ -32,8 +32,8 @@ export const MyOrders = () => {
 
     if (res.isConfirmed) {
       const response = await authFetch.delete(`/orders/cancel/${orderId}`);
-
-      if (response.status === 204) {
+      console.log(response);
+      if (response.status === 200) {
         await authFetch.put(`/products/update-available-quantity/${productId}`, {
           quantity: orderQuantity,
         });

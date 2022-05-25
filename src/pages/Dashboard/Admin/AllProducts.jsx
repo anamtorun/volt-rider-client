@@ -106,7 +106,16 @@ export const AllProducts = () => {
                     $ {product.price?.toFixed(2)}
                   </td>
                   <td className="p-4 text-gray-700 whitespace-nowrap">
-                    {product.available_quantity}
+                    {product.available_quantity < product.min_order_quantity ? (
+                      <>
+                        {product.available_quantity} <br />
+                        <span className="badge badge-sm badge-error p-2">
+                          Product stock is lower than min order quantity
+                        </span>
+                      </>
+                    ) : (
+                      product.available_quantity
+                    )}
                   </td>
                   <td className="p-4 text-gray-700 whitespace-nowrap">
                     {product.min_order_quantity}
