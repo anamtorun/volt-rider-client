@@ -89,14 +89,14 @@ export const AddReview = () => {
           <div className="mt-4">
             <label
               className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
-              htmlFor="name"
+              htmlFor="ratings"
             >
               Rating number
             </label>
             <input
               type="text"
               placeholder="Your rating. eg: 4"
-              id="name"
+              id="ratings"
               className="input input-bordered w-full "
               {...register('ratings')}
             />
