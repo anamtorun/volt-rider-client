@@ -4,6 +4,7 @@ const links = [
   { name: 'Services', path: '/services' },
   { name: 'Hit us up', path: '/contact-us' },
   { name: 'Blogs', path: '/blogs' },
+  { name: 'Portfolio', path: '/portfolio' },
 ];
 
 export default links;

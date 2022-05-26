@@ -13,6 +13,7 @@ import {
   AllOrders,
   AddProduct,
   AllProducts,
+  Portfolio,
 } from './pages';
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
 
         <Route path="/login" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/portfolio" element={<Portfolio />} />
       </Routes>
 
       <Footer />

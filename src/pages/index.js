@@ -2,6 +2,7 @@ export { Home } from './Home';
 export { Login } from './Login';
 export { SignUp } from './SignUp';
 export { ProductDetails } from './ProductDetails';
+export { Portfolio } from './Portfolio';
 
 export { Dashboard } from './Dashboard/Dashboard';
 export { MyOrders } from './Dashboard/MyOrders';
