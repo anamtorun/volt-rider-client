@@ -8,6 +8,7 @@ import links from '../../utils/Links';
 export const Navbar = () => {
   const id = useId();
   const [user, loading] = useAuthState(auth);
+
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
@@ -79,6 +80,12 @@ export const Navbar = () => {
           >
             Log in
           </Link>
+        )}
+
+        {user && !loading && (
+          <button className="btn glass normal-case text-gray-600 mr-3 hidden lg:flex px-4">
+            {user?.displayName}
+          </button>
         )}
 
         {/* Show LOADING or SIGN UP or SIGN OUT button*/}

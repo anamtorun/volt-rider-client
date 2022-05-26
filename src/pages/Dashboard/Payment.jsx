@@ -15,7 +15,7 @@ export const Payment = () => {
         Confirm your order for &mdash; {productName}
       </h1>
 
-      <div className="relative block p-8 border-t-4 border-gray-700 rounded-sm shadow-xl w-full max-w-[460px]">
+      <div className="relative block p-8 border-t-4 border-gray-700 rounded-sm shadow-xl w-full max-w-[470px]">
         <h5 className="text-lg text-gray-600">
           <span className="font-medium">Name:</span> {productName}
         </h5>
@@ -29,7 +29,7 @@ export const Payment = () => {
         </div>
       </div>
 
-      <div className="relative block p-8 border-t-4 border-gray-700 rounded-sm shadow-xl w-full max-w-[460px]">
+      <div className="relative block p-8 border-t-4 border-gray-700 rounded-sm shadow-xl w-full max-w-[470px]">
         <Elements stripe={stripePromise}>
           <CheckoutForm
             orderId={orderId}

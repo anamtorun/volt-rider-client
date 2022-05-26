@@ -29,6 +29,24 @@ export const AllOrders = () => {
     }
   };
 
+  const handleCancelOrder = async (orderId) => {
+    const res = await confirmModal(
+      'You want to cancel the order? This action can not be reverted.',
+      "Yes, I'm sure",
+      'No'
+    );
+
+    if (res.isConfirmed) {
+      try {
+        await authFetch.delete(`/orders/cancel/${orderId}`);
+        refetch();
+        MySwal.fire('Success', 'Order cancelled', 'success');
+      } catch (error) {
+        customAlert('Could not perform the task, try again.');
+      }
+    }
+  };
+
   if (isLoading) {
     return <Spinner />;
   }
@@ -106,7 +124,7 @@ export const AllOrders = () => {
                 </th>
                 <th className="p-4 font-medium text-left text-gray-900 whitespace-nowrap">
                   <div className="flex items-center">
-                    Actions (Mark Ship)
+                    Actions
                     <i>
                       <MdOutlineKeyboardArrowDown className="w-4 h-4 ml-1.5 text-gray-700" />
                     </i>
@@ -162,6 +180,15 @@ export const AllOrders = () => {
                         </button>
                       </div>
                     )}
+                    {!order.paid && (
+                      <button
+                        onClick={() => handleCancelOrder(order._id)}
+                        type="button"
+                        className="btn btn-sm btn-error normal-case text-neutral text-opacity-90"
+                      >
+                        Cancel
+                      </button>
+                    )}
                   </td>
                 </tr>
               ))}
@@ -193,7 +220,7 @@ export const AllOrders = () => {
                     <div className="flex items-center">Amount Paid</div>
                   </th>
                   <th className="p-4 font-medium text-left text-gray-900 whitespace-nowrap">
-                    <div className="flex items-center">Actions (Mark Ship)</div>
+                    <div className="flex items-center">Actions</div>
                   </th>
                 </tr>
               </tfoot>
