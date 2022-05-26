@@ -25,7 +25,7 @@ export const Tools = () => {
         ))}
       </section>
       <div className="flex justify-center mt-16">
-        <Link to="/" className="btn btn-secondary">
+        <Link to="/products" className="btn btn-secondary">
           View All Products
         </Link>
       </div>
