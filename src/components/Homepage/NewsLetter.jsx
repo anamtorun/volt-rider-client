@@ -26,8 +26,8 @@ export const NewsLetter = () => {
     reset();
   };
   return (
-    <section className="bg-white dark:bg-gray-900">
-      <div className="container px-4 py-20 lg:py-8 lg:pb-20 mx-auto lg:flex lg:items-center justify-evenly">
+    <section className="bg-slate-100 dark:bg-gray-900">
+      <div className="container px-4 py-20 lg:py-16 mx-auto lg:flex lg:items-center justify-evenly">
         <h2 className="text-xl font-bold tracking-tight text-gray-600 xl:text-2xl dark:text-white">
           Join us to get the latest product updates and offers
         </h2>

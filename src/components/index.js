@@ -3,6 +3,7 @@ export { Tools } from './Homepage/Tools';
 export { Summary } from './Homepage/Summary';
 export { Reviews } from './Homepage/Reviews';
 export { NewsLetter } from './Homepage/NewsLetter';
+export { FAQs } from './Homepage/FAQs';
 
 export { Navbar } from './shared/Navbar';
 export { Stat } from './shared/Stat';
