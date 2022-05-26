@@ -16,6 +16,7 @@ import {
   Portfolio,
   NotFound,
   Payment,
+  Blog,
 } from './pages';
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/portfolio" element={<Portfolio />} />
+        <Route path="/blogs" element={<Blog />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
 
