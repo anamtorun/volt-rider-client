@@ -96,7 +96,7 @@ export const Portfolio = () => {
             Click here
           </a>
         </div>
-        <div className="flex gap-2 items-center flex-wrap px-4 lg:px-0 shadow-none shadow py-6 lg:py-0">
+        <div className="flex gap-2 items-center flex-wrap px-4 lg:px-0 lg:shadow-none shadow py-6 lg:py-0">
           <p className="text-primary text-xl font-semibold">unLens</p>
           <p>Photography as a service portfolio website</p>
           <a href="https://unlens.web.app/" className="link hover:link-primary">

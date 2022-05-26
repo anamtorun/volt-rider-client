@@ -14,6 +14,7 @@ import {
   AddProduct,
   AllProducts,
   Portfolio,
+  NotFound,
 } from './pages';
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/portfolio" element={<Portfolio />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
       <Footer />
