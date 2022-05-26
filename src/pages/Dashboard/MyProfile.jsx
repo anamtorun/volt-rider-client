@@ -77,7 +77,7 @@ export const MyProfile = () => {
               </button>
 
               {/* Edit Profile */}
-              <p className="text-[15px] font-normal mb-5 xl:w-[80%]">{user?.bio}</p>
+              <p className="text-[15px] font-normal mb-5 xl:w-[80%]">{user?.bio || 'N/A'}</p>
               {/* Education */}
               <div className="flex items-center gap-2 text-[15px] mb-2 text-gray-800">
                 <i>
@@ -191,6 +191,7 @@ export const MyProfile = () => {
                   </div>
                   <div className="text-gray-700 font-xl font-bold">Check order status</div>
                   <Link
+                    disabled={user?.role === 'admin'}
                     to="/dashboard/my-orders"
                     className="btn btn-sm w-max btn-secondary mt-4 normal-case"
                   >
@@ -208,6 +209,7 @@ export const MyProfile = () => {
                   </div>
                   <div className="text-gray-700 font-xl font-bold">Write review</div>
                   <Link
+                    disabled={user?.role === 'admin'}
                     to="/dashboard/add-review"
                     className="btn btn-sm w-max btn-accent normal-case mt-4"
                   >
