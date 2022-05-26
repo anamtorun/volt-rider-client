@@ -1,70 +1,97 @@
-# Getting Started with Create React App
+# FireTools
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A MERN stack web application built for manufacturer company FireTools where take order for electrical tools such as wire and cable crimpers, cable tie gun etc.
 
-## Available Scripts
+## Task description about the project can be found [here](https://github.com/ProgrammingHero1/Manufacturer-website-assignment/blob/main/task_description.md)
 
-In the project directory, you can run:
+## Features / what is included in this project
 
-### `yarn start`
+- Completely responsive for all devices
+- View selected products on Homepage
+- Selected reviews on Homepage
+- Show toasts on different events
+- Protected routing
+- Authentication
+- Stripe payment
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  - Email - password registration system
+  - SignIn / SignUp with Google
+  - Email verification
+  - Password reset option
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- User
 
-### `yarn test`
+  - can view list of products
+  - Order product
+  - Give reviews
+  - Update their profile
+  - Make payment
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Admin
 
-### `yarn build`
+  - Add product
+  - Manage Products such as add, delete etc.
+  - Control orders
+  - Manage users
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  And a lot more...
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Technologies used
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- React
+- Firebase
+- React Router
+- Tailwind CSS
+- DaisyUI
+- NodeJS
+- MongoDB
+- Express
+- JWT etc.
+- cloudinary for image uploads
+- Axios for http requests
 
-### `yarn eject`
+## [LIVE SITE](https://firetools-971b5.web.app/)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Server side description of the application can be found [here](https://github.com/ProgrammingHeroWC4/warehouse-management-server-side-Ar1f007#zen-fitness)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Screenshots
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Screenshots of few pages of the website.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Homepage
 
-## Learn More
+![Homepage](https://res.cloudinary.com/dv3wezqsc/image/upload/v1653584220/homepage_lgnqs8.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### My Profile
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![My profile](https://res.cloudinary.com/dv3wezqsc/image/upload/v1653584531/My_profile_g4hmtc.png)
 
-### Code Splitting
+### Orders Page
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![Orders](https://res.cloudinary.com/dv3wezqsc/image/upload/v1653584575/orderspage_edc72j.png)
 
-### Analyzing the Bundle Size
+### Add Product UI
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+![Add product](https://res.cloudinary.com/dv3wezqsc/image/upload/v1653584614/add_product_wei3o0.png)
 
-### Making a Progressive Web App
+### Product details and order form
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+![Product details and order form](https://res.cloudinary.com/dv3wezqsc/image/upload/v1653584663/prodDetailAndOrder_wjvphs.png)
 
-### Advanced Configuration
+### User's orders
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+![User's orders](https://res.cloudinary.com/dv3wezqsc/image/upload/v1653584732/userOrdersPage_ydjdwq.png)
 
-### Deployment
+### Products
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+![Products](https://res.cloudinary.com/dv3wezqsc/image/upload/v1653584730/products_nyk6pl.png)
 
-### `yarn build` fails to minify
+### Sign up UI
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![Sign up page](https://res.cloudinary.com/dv3wezqsc/image/upload/v1653584734/signupUI_a5apch.png)
+
+## Author
+
+- Facebook - [@4r1f007](https://www.facebook.com/4r1f007/)
+- Instagram - [@\_4r1f](https://www.instagram.com/_4r1f)
+- Twitter - [@Ar1f007](https://twitter.com/Ariif_007)
