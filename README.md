@@ -52,7 +52,7 @@ A MERN stack web application built for manufacturer company FireTools where take
 
 ## [LIVE SITE](https://firetools-971b5.web.app/)
 
-### Server side description of the application can be found [here](https://github.com/ProgrammingHeroWC4/warehouse-management-server-side-Ar1f007#zen-fitness)
+### Server side description of the application can be found [here](https://github.com/programming-hero-web-course1/manufacturer-website-server-side-Ar1f007#readme)
 
 ## Screenshots
 
@@ -89,6 +89,10 @@ Screenshots of few pages of the website.
 ### Sign up UI
 
 ![Sign up page](https://res.cloudinary.com/dv3wezqsc/image/upload/v1653584734/signupUI_a5apch.png)
+
+### Mobile View
+
+![Mobile View](https://res.cloudinary.com/dv3wezqsc/image/upload/v1653585503/mobileview_nydxrz.png)
 
 ## Author
 
