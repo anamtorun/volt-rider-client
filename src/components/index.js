@@ -2,6 +2,7 @@ export { Banner } from './Homepage/Banner';
 export { Tools } from './Homepage/Tools';
 export { Summary } from './Homepage/Summary';
 export { Reviews } from './Homepage/Reviews';
+export { NewsLetter } from './Homepage/NewsLetter';
 
 export { Navbar } from './shared/Navbar';
 export { Stat } from './shared/Stat';

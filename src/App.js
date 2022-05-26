@@ -15,6 +15,7 @@ import {
   AllProducts,
   Portfolio,
   NotFound,
+  Payment,
 } from './pages';
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
             <Route index element={<MyProfile />} />
             <Route path="my-orders" element={<MyOrders />} />
             <Route path="add-review" element={<AddReview />} />
+            <Route path="payment" element={<Payment />} />
 
             <Route element={<RequireAdmin />}>
               <Route path="manage-users" element={<AllUsers />} />

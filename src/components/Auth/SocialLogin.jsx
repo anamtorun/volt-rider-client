@@ -5,6 +5,7 @@ import { splitFirebaseErrorMsg } from '../../utils/splitFirebaseErrorMsg.js';
 import auth from '../../config/firebase';
 import useToken from '../../hooks/useToken.js';
 import customAlert from '../../utils/CustomAlert.js';
+import { useEffect } from 'react';
 
 export const SocialLogin = () => {
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
@@ -13,10 +14,12 @@ export const SocialLogin = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
 
-  if (token) {
-    navigate(state?.path || '/');
-    return;
-  }
+  useEffect(() => {
+    if (token) {
+      navigate(state?.path || '/');
+      return;
+    }
+  }, [token, navigate, state]);
 
   if (error) {
     const msg = splitFirebaseErrorMsg(error.message);

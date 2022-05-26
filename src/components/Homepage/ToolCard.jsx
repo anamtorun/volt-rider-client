@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import cutShortText from '../../utils/cutShortText';
 
 export const ToolCard = ({ item }) => {
   const { _id, name, description, min_order_quantity, available_quantity, price, image } = item;
@@ -13,7 +14,7 @@ export const ToolCard = ({ item }) => {
       </div>
 
       <div className="px-6 py-4">
-        <p className="py-2 text-gray-700 dark:text-gray-400">{description}</p>
+        <p className="py-2 text-gray-700 dark:text-gray-400">{cutShortText(description)}. . .</p>
 
         <div className="flex items-center justify-between flex-wrap gap-2 mt-2 text-gray-700 dark:text-gray-200">
           <div className="badge badge-outline">

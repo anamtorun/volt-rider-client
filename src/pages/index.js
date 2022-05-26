@@ -9,6 +9,7 @@ export { Dashboard } from './Dashboard/Dashboard';
 export { MyOrders } from './Dashboard/MyOrders';
 export { AddReview } from './Dashboard/AddReview';
 export { MyProfile } from './Dashboard/MyProfile';
+export { Payment } from './Dashboard/Payment';
 
 export { AllUsers } from './Dashboard/Admin/AllUsers';
 export { AllOrders } from './Dashboard/Admin/AllOrders';

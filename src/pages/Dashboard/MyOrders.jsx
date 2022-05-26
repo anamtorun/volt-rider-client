@@ -8,9 +8,11 @@ import authFetch from '../../config/axios';
 import auth from '../../config/firebase';
 import { confirmModal } from '../../utils/ConfirmModal';
 import MySwal from '../../config/sweetAlert';
+import { useNavigate } from 'react-router-dom';
 
 export const MyOrders = () => {
   const [user, loading] = useAuthState(auth);
+  const navigate = useNavigate();
 
   const fetchOrders = async () => {
     if (user) {
@@ -147,6 +149,19 @@ export const MyOrders = () => {
                     {!order.paid && (
                       <div className="flex flex-wrap gap-2">
                         <button
+                          onClick={() =>
+                            navigate(`/dashboard/payment`, {
+                              state: {
+                                productName: order?.productName,
+                                total: order?.total,
+                                quantity: order?.orderQuantity,
+                                productId: order?.productId,
+                                orderId: order?._id,
+                                ordererName: order?.name,
+                                ordererEmail: order?.email,
+                              },
+                            })
+                          }
                           type="button"
                           className="btn btn-sm btn-accent normal-case text-neutral text-opacity-90"
                         >
