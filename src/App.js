@@ -17,6 +17,7 @@ import {
   NotFound,
   Payment,
   Blog,
+  ResetPassword,
 } from './pages';
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
 
         <Route path="/login" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/forget-password" element={<ResetPassword />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/blogs" element={<Blog />} />
         <Route path="*" element={<NotFound />} />

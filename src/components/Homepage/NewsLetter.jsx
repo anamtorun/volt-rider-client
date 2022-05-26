@@ -1,15 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 import MySwal from '../../config/sweetAlert';
-
-const schema = yup.object({
-  email: yup
-    .string()
-    .email('Not a valid email')
-    .required('Type your email address')
-    .typeError('Type your email address'),
-});
+import emailSchema from '../../validation/emailSchema';
 
 export const NewsLetter = () => {
   const {
@@ -18,7 +10,7 @@ export const NewsLetter = () => {
     reset,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(emailSchema),
   });
 
   const onSubmit = () => {

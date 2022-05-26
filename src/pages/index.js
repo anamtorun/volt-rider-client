@@ -4,6 +4,7 @@ export { SignUp } from './SignUp';
 export { ProductDetails } from './ProductDetails';
 export { Portfolio } from './Portfolio';
 export { Blog } from './Blog';
+export { ResetPassword } from './ResetPassword';
 export { NotFound } from './NotFound';
 
 export { Dashboard } from './Dashboard/Dashboard';

@@ -109,6 +109,7 @@ export const Login = () => {
 
           <div className="mt-8">
             <button
+              disabled={loading}
               type="submit"
               className={`w-full px-4 py-2 tracking-wide btn font-normal normal-case text-base ${
                 loading && 'loading'

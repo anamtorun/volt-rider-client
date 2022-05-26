@@ -30,6 +30,7 @@ export const SocialLogin = () => {
 
   return (
     <button
+      disabled={loading}
       onClick={() => signInWithGoogle()}
       className="w-full flex items-center justify-center mt-4 text-gray-600 transition-colors duration-200 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
     >
