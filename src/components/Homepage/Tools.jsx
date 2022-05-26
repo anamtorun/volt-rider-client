@@ -2,10 +2,10 @@ import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import { ToolCard } from './ToolCard';
 import { Spinner } from '../../components';
-import axios from 'axios';
+import authFetch from '../../config/axios';
 
 const fetchData = async () => {
-  const { data } = await axios('http://localhost:5000/products');
+  const { data } = await authFetch('/products');
   return data;
 };
 

@@ -1,4 +1,3 @@
-import axios from 'axios';
 import auth from '../config/firebase';
 import authFetch from '../config/axios';
 
@@ -23,7 +22,7 @@ export const ProductDetails = () => {
   const navigate = useNavigate();
 
   const fetchData = async () => {
-    const { data } = await axios(`http://localhost:5000/products/details/${id}`);
+    const { data } = await authFetch(`/products/details/${id}`);
     return data;
   };
 
