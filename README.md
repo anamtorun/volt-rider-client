@@ -2,7 +2,7 @@
 
 A MERN stack web application built for manufacturer company FireTools where take order for electrical tools such as wire and cable crimpers, cable tie gun etc.
 
-## Task description about the project can be found [here](https://github.com/ProgrammingHero1/Manufacturer-website-assignment/blob/main/task_description.md)
+## Task description about the project can be found [here](https://github.com/Ar1f007/fireTools-client/blob/main/Task_Description.md)
 
 ## Features / what is included in this project
 
@@ -46,13 +46,13 @@ A MERN stack web application built for manufacturer company FireTools where take
 - NodeJS
 - MongoDB
 - Express
-- JWT etc.
+- JWT
 - cloudinary for image uploads
-- Axios for http requests
+- Axios for http requests etc.
 
 ## [LIVE SITE](https://firetools-971b5.web.app/)
 
-### Server side description of the application can be found [here](https://github.com/programming-hero-web-course1/manufacturer-website-server-side-Ar1f007#readme)
+### Server side description of the application can be found [here](https://github.com/Ar1f007/fireTools-server#firetools)
 
 ## Screenshots
 
