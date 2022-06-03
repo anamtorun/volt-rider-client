@@ -3,7 +3,6 @@ export { Login } from './Login';
 export { SignUp } from './SignUp';
 export { ProductDetails } from './ProductDetails';
 export { Portfolio } from './Portfolio';
-export { Blog } from './Blog';
 export { ResetPassword } from './ResetPassword';
 export { NotFound } from './NotFound';
 

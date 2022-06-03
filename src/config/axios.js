@@ -4,7 +4,7 @@ import customAlert from '../utils/CustomAlert';
 import auth from './firebase';
 
 // const url = 'http://localhost:5000';
-const url = 'https://stark-inlet-12236.herokuapp.com';
+const url = 'https://boiling-stream-59490.herokuapp.com';
 const authFetch = axios.create({
   baseURL: url,
 });

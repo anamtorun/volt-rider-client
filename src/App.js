@@ -50,7 +50,6 @@ function App() {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/forget-password" element={<ResetPassword />} />
         <Route path="/portfolio" element={<Portfolio />} />
-        <Route path="/blogs" element={<Blog />} />
         <Route path="/products" element={<GetAllProducts />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
